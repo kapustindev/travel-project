@@ -7,9 +7,11 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
-  res.send('Express + TypeScript Server')
-})
+  res.json({ data: 'Express + TypeScript Server' });
+});
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+  console.log(`Example app listening on port ${port}`);
+});
+
+export default app;
