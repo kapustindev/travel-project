@@ -1,7 +1,7 @@
 name: build
 on: push
 jobs:
-  build:
+  build-backend:
     runs-on: ubuntu-latest
     steps:
       - name: checkout repo
@@ -11,5 +11,21 @@ jobs:
         with:
           node-version: '18.x'
       - run: npm install
+        working-directory: ./server
       - run: npm run build
+        working-directory: ./server
+
+  build-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v3
+      - name: use node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+      - run: npm install
+        working-directory: ./client
+      - run: npm run build
+        working-directory: ./client
       
