@@ -1,5 +1,5 @@
-import { IDatesRange } from '../types';
 import { format } from 'date-fns';
+import { IDatesRange } from '../types/api.ts';
 
 export const datesRangeToString = (datesRange?: IDatesRange) => {
   if (!datesRange) {
