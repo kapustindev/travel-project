@@ -10,13 +10,15 @@ const port = process.env.PORT || 3000;
 
 const accommodations = Array.from({ length: 100 }, () => ({
   _id: faker.string.uuid(),
+  description: faker.lorem.sentence(),
   country: faker.location.country(),
   city: faker.location.city(),
-  image: faker.image.urlLoremFlickr({ category: 'city' }),
+  photos: Array.from({ length: 5 }, () => faker.image.urlLoremFlickr({ category: 'city' })),
   price: faker.number.int({ min: 100, max: 1000 }),
-  rating: faker.number.float({ min: 4, max: 5, precision: 0.01 }),
+  reviews: Array.from({ length: 5 }, () => ({ rating: faker.number.float({ min: 4.5, max: 5, precision: 0.01 }) })),
   owner: {
     name: faker.person.firstName(),
+    data: { isSuper: faker.datatype.boolean(0.5) },
     photo: faker.image.urlLoremFlickr({ category: 'face' }),
   },
 }));
