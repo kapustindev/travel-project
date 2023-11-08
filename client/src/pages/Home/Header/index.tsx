@@ -2,6 +2,8 @@ import SearchBar from './SearchBar';
 import UserProfile from './UserProfile';
 import { Logo } from '../../../components/icons/Logo.tsx';
 import { useState } from 'react';
+import { Globe } from '../../../components/icons/Globe.tsx';
+import { EUserRole } from '../../../types/api.ts';
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,7 +19,15 @@ export const Header = () => {
       <div className="flex items-center justify-between h-20 relative">
         <Logo className="text-blue-700" />
         <SearchBar onClick={handleHeaderOpen} />
-        <UserProfile />
+        <div className="flex items-center">
+          <button className="p-3 rounded-3xl hover:bg-gray-100">
+            Airbnb your home
+          </button>
+          <button className="p-3 rounded-3xl hover:bg-gray-100 mr-1.5">
+            <Globe className="w-4 h-4" />
+          </button>
+          <UserProfile role={EUserRole.Guest} />
+        </div>
       </div>
     </header>
   );

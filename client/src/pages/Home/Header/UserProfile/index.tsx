@@ -1,22 +1,36 @@
-import { Globe } from '../../../../components/icons/Globe.tsx';
 import { BurgerMenu } from '../../../../components/icons/BurgerMenu.tsx';
 import { ProfilePic } from '../../../../components/icons/ProfilePic.tsx';
 import { ActionContainer } from '../ActionContainer';
+import { EUserRole, INotification } from '../../../../types/api.ts';
+import { FC } from 'react';
 
-const UserProfile = () => {
+interface IUserProfile {
+  role: EUserRole;
+  photo?: string;
+  notifications?: INotification[];
+}
+
+const UserProfile: FC<IUserProfile> = ({ role, photo, notifications = [] }) => {
   return (
-    <div className="flex items-center">
-      <button className="p-3 rounded-3xl hover:bg-gray-100">
-        Airbnb your home
-      </button>
-      <button className="p-3 rounded-3xl hover:bg-gray-100 mr-1.5">
-        <Globe className="w-4 h-4" />
-      </button>
-      <ActionContainer>
-        <BurgerMenu className="w-4 h-4 stroke-3 stroke-gray-800 ml-1.5" />
-        <ProfilePic className="w-8 h-8 fill-gray-500 ml-4" />
-      </ActionContainer>
-    </div>
+    <ActionContainer>
+      <BurgerMenu className="w-4 h-4 stroke-3 stroke-gray-800 ml-1.5" />
+      <div className="ml-3 w-8 h-8">
+        {role === EUserRole.Guest ? (
+          <ProfilePic className=" fill-gray-500" />
+        ) : (
+          <div
+            className="relative w-8 h-8 bg-contain rounded-3xl"
+            style={{ backgroundImage: `url(${photo})` }}
+          >
+            {notifications.length > 0 && (
+              <div className="flex justify-center items-center text-[9px] text-white absolute w-4 h-4 -top-1.5 -right-1 rounded-3xl bg-red-500 border border-white">
+                {notifications.length}
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    </ActionContainer>
   );
 };
 

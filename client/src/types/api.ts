@@ -3,19 +3,41 @@ export interface IDatesRange {
   endDate: Date;
 }
 
-enum EUserRole {
+export enum EUserRole {
   Host = 'host',
+  Traveler = 'traveler',
   Guest = 'guest',
 }
 
-interface IHostData {
+export interface INotification {
+  id: string;
+  isRead: boolean;
+}
+
+interface IAccount {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  isVerified: boolean;
+  photo: string;
+  notifications: INotification[];
+}
+
+interface IHostData extends IAccount {
   isSuper: boolean;
 }
 
-interface IGuestData {
+interface ITravelerData extends IAccount {
   trips: ITrip[];
   wishlists: IWishList[];
 }
+
+type TUserDataMap = {
+  [EUserRole.Guest]: Record<string, never>;
+  [EUserRole.Traveler]: ITravelerData;
+  [EUserRole.Host]: IHostData;
+};
 
 interface IWishList {
   title: string;
@@ -27,19 +49,13 @@ interface ITrip {
   datesRange: IDatesRange;
 }
 
-interface IUser<T extends EUserRole> {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  isVerified: boolean;
-  photo: string;
+export interface IUser<T extends EUserRole> {
   role: T;
-  data: T extends EUserRole.Host ? IHostData : IGuestData;
+  data: TUserDataMap[T];
 }
 
 interface IReview {
-  author: IUser<EUserRole.Guest>;
+  author: IUser<EUserRole.Traveler>;
   trip: ITrip;
   description: string;
   rating: number;
