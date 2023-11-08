@@ -1,26 +1,37 @@
 import { FC } from 'react';
-import { IDatesRange } from '../../../../types';
 import { datesRangeToString } from '../../../../utils/dates.ts';
 import { Search } from '../../../../components/icons/Search.tsx';
 import { ActionContainer } from '../ActionContainer';
+import { IDatesRange } from '../../../../types/api.ts';
 
 interface Props {
   location?: string;
   datesRange?: IDatesRange;
   guestCount?: number;
+  onClick: () => void;
 }
 
-const SearchBar: FC<Props> = ({ location, datesRange, guestCount }) => {
+const SearchBar: FC<Props> = ({
+  location,
+  datesRange,
+  guestCount,
+  onClick,
+}) => {
   return (
-    <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2">
+    <div
+      className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2"
+      onClick={onClick}
+    >
       <ActionContainer withDivider>
         <button className="px-4">{location || 'Anywhere'}</button>
-        <button className="px-4">
+        <button className="px-4 whitespace-nowrap truncate">
           {datesRangeToString(datesRange) || 'Any week'}
         </button>
         <div className="flex items-center">
           <button
-            className={`px-4 ${guestCount ? '' : 'font-light text-gray-500'}`}
+            className={`px-4 whitespace-nowrap truncate ${
+              guestCount ? '' : 'font-light text-gray-500'
+            }`}
           >
             {guestCount || 'Add'} guests
           </button>
