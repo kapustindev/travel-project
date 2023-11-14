@@ -13,17 +13,17 @@ interface IUserProfile {
 const UserProfile: FC<IUserProfile> = ({ role, photo, notifications = [] }) => {
   return (
     <ActionContainer>
-      <BurgerMenu className="w-4 h-4 stroke-3 stroke-gray-800 ml-1.5" />
-      <div className="ml-3 w-8 h-8">
+      <BurgerMenu className="ml-1.5 h-4 w-4 stroke-gray-800 stroke-3" />
+      <div className="ml-3 h-8 w-8">
         {role === EUserRole.Guest ? (
           <ProfilePic className=" fill-gray-500" />
         ) : (
           <div
-            className="relative w-8 h-8 bg-contain rounded-3xl"
+            className="relative h-8 w-8 rounded-3xl bg-contain"
             style={{ backgroundImage: `url(${photo})` }}
           >
             {notifications.length > 0 && (
-              <div className="flex justify-center items-center text-[9px] text-white absolute w-4 h-4 -top-1.5 -right-1 rounded-3xl bg-red-500 border border-white">
+              <div className="absolute -right-1 -top-1.5 flex h-4 w-4 items-center justify-center rounded-3xl border border-white bg-red-500 text-[9px] text-white">
                 {notifications.length}
               </div>
             )}

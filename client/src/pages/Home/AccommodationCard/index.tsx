@@ -19,29 +19,29 @@ export const AccommodationCard: FC<TAccommodationCard> = ({
   }, [reviews]);
 
   return (
-    <div className="flex flex-col justify-start w-80">
+    <div className="flex w-80 flex-col justify-start">
       <div
-        className="relative object-cover h-72 rounded-2xl mb-2"
+        className="relative mb-2 h-72 rounded-2xl object-cover"
         style={{ backgroundImage: `url(${photos[0]})` }}
       >
         <button
-          className={`absolute top-5 right-5 h-6 w-6 stroke-2 stroke-white active:scale-90 ${
+          className={`absolute right-5 top-5 h-6 w-6 stroke-white stroke-2 active:scale-90 ${
             isFavorite ? 'fill-blue-600' : 'fill-[rgba(0,0,0,0.5)]'
           }`}
         >
           <Heart />
         </button>
       </div>
-      <div className="flex items-center justify-between font-bold text-sm mb-0.5">
+      <div className="mb-0.5 flex items-center justify-between text-sm font-bold">
         <div className="font-medium">
           {city} ({country})
         </div>
         <div className="flex items-center font-light">
-          <Star className="w-3 h-3 mr-1" />
+          <Star className="mr-1 h-3 w-3" />
           {rating}
         </div>
       </div>
-      <div className="text-sm font-light tracking-wide text-gray-500 mb-1.5 truncate">
+      <div className="mb-1.5 truncate text-sm font-light tracking-wide text-gray-500">
         {description}
       </div>
       <div className="text-sm">

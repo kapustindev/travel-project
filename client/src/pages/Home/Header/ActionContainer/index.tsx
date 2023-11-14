@@ -6,7 +6,7 @@ export const ActionContainer = ({
 }: PropsWithChildren<{ withDivider?: boolean }>) => {
   return (
     <div
-      className={`flex items-center border px-2 rounded-3xl h-12 shadow hover:shadow-md transition-shadow cursor-pointer ${
+      className={`flex h-12 cursor-pointer items-center rounded-3xl border px-2 shadow transition-shadow hover:shadow-md ${
         withDivider ? 'divide-x' : ''
       }`}
     >

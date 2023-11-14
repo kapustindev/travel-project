@@ -12,19 +12,19 @@ export const Header = () => {
 
   return (
     <header
-      className={`sticky z-10 top-0 px-20 sm:px-10 ${
+      className={`sticky top-0 z-10 px-20 sm:px-10 ${
         isOpen ? 'h-52' : 'h-20'
-      } border-b-2 mb-10 text-sm transition-[height] bg-white`}
+      } mb-10 border-b-2 bg-white text-sm transition-[height]`}
     >
-      <div className="flex items-center justify-between h-20 relative">
+      <div className="relative flex h-20 items-center justify-between">
         <Logo className="text-blue-700" />
         <SearchBar onClick={handleHeaderOpen} />
         <div className="flex items-center">
-          <button className="p-3 rounded-3xl hover:bg-gray-100">
+          <button className="rounded-3xl p-3 hover:bg-gray-100">
             Airbnb your home
           </button>
-          <button className="p-3 rounded-3xl hover:bg-gray-100 mr-1.5">
-            <Globe className="w-4 h-4" />
+          <button className="mr-1.5 rounded-3xl p-3 hover:bg-gray-100">
+            <Globe className="h-4 w-4" />
           </button>
           <UserProfile role={EUserRole.Guest} />
         </div>
